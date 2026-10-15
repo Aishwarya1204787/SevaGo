@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SevaGo Vadodara | Everyday Deliveries Across Vadodara</title>
+<meta name="description" content="SevaGo delivers tiffin, medicines, groceries, documents and laundry across 14 areas of Vadodara with flat, transparent prices.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌳</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@600;800&family=Mukta:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- Design tokens ---------- */
+:root{
+  --bg:#FFFBF2;
+  --surface:#FFFFFF;
+  --ink:#1D3A2F;
+  --muted:#566C62;
+  --line:#E5E9DC;
+  --green:#1F8A5B;
+  --green-dark:#146B45;
+  --mint:#E2F5EA;
+  --gold:#F7A81B;
+  --gold-dark:#B87300;
+  --gold-soft:#FFF0CC;
+  --coral:#E4572E;
+  --coral-soft:#FDE6DD;
+  --sky:#E1F0FA;
+  --sky-dark:#1C6B9A;
+  --head:"Baloo Bhai 2","Trebuchet MS",system-ui,sans-serif;
+  --body:"Mukta","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px}
+img,svg{max-width:100%;display:block}
+a{color:var(--green-dark)}
+a:hover{color:var(--green)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--head);line-height:1.15;font-weight:800}
+h2{font-size:clamp(1.9rem,3.5vw,2.6rem);margin-bottom:.5rem}
+h3{font-size:1.2rem;margin-bottom:.3rem;font-weight:600}
+.wrap{width:min(1120px,92%);margin-inline:auto}
+section{padding:84px 0;scroll-margin-top:78px}
+.lead{color:var(--muted);max-width:64ch;font-size:1.1rem}
+.section-head{margin-bottom:34px}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.78rem 1.4rem;border-radius:999px;font:700 1rem var(--body);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:background .2s,color .2s}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:var(--green-dark);color:#fff}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:#fbbd45;color:var(--ink)}
+.btn-ghost{background:transparent;border-color:var(--green);color:var(--green-dark)}
+.btn-ghost:hover{background:var(--mint);color:var(--green-dark)}
+.btn-wa{background:#1FA855;color:#fff}
+.btn-wa:hover{background:#178a45;color:#fff}
+
+/* ---------- Header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(8px)}
+header::after{content:"";display:block;height:5px;background:linear-gradient(90deg,var(--gold),var(--green))}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink);font:800 1.5rem var(--head)}
+.brand:hover{color:var(--ink)}
+.nav ul{display:flex;gap:.3rem;list-style:none;align-items:center}
+.nav ul a{display:block;padding:.45rem .9rem;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:700;font-size:.97rem}
+.nav ul a:hover,.nav ul a.active{background:var(--mint);color:var(--green-dark)}
+.nav ul a.cta{background:var(--green);color:#fff}
+.nav ul a.cta:hover{background:var(--green-dark)}
+.menu-btn{display:none;background:none;border:2px solid var(--line);border-radius:10px;padding:.4rem .8rem;font:700 .95rem var(--body);color:var(--ink);cursor:pointer}
+
+/* ---------- Home ---------- */
+#home{padding:64px 0 84px;background:
+  radial-gradient(800px 420px at 92% -8%,var(--gold-soft),transparent 70%),
+  radial-gradient(700px 380px at -6% 105%,var(--mint),transparent 70%)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.hello{display:inline-block;background:var(--gold-soft);color:var(--gold-dark);font-weight:700;padding:.3rem 1rem;border-radius:999px;margin-bottom:1rem}
+.hero h1{font-size:clamp(2.3rem,5vw,3.6rem);margin-bottom:1rem}
+.hero .lead{margin-bottom:1.6rem}
+.actions{display:flex;flex-wrap:wrap;gap:.8rem}
+.purpose{margin-top:1.7rem;padding:1rem 1.2rem;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--gold);border-radius:12px;max-width:540px;font-size:.98rem}
+.tiles-box{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 18px 40px -26px rgba(29,58,47,.45)}
+.tiles-box h3{font-size:1.3rem;margin-bottom:.9rem}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;background:var(--bg);border:1px solid var(--line);text-decoration:none;color:var(--ink);transition:border-color .2s,background .2s}
+.tile:hover{border-color:var(--green);background:var(--mint);color:var(--ink)}
+.tile .ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.5rem;background:var(--gold-soft);flex:none}
+.tile b{display:block;font-size:.98rem;line-height:1.25}
+.tile small{color:var(--muted)}
+
+/* ---------- About ---------- */
+#about{background:var(--surface);border-block:1px solid var(--line)}
+.problem{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:34px}
+.card{padding:22px;border-radius:16px;border:1px solid var(--line);background:var(--bg)}
+.card p{color:var(--muted);font-size:.98rem}
+.problem .card:nth-child(1){border-top:6px solid var(--coral)}
+.problem .card:nth-child(2){border-top:6px solid var(--gold)}
+.problem .card:nth-child(3){border-top:6px solid var(--green)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.facts{display:grid;gap:14px}
+.fact{padding:18px 20px;border-radius:14px;border:1px solid var(--line);background:var(--bg)}
+.fact:nth-child(1){border-left:6px solid var(--green)}
+.fact:nth-child(2){border-left:6px solid var(--gold)}
+.fact:nth-child(3){border-left:6px solid var(--sky-dark)}
+.fact p{color:var(--muted);font-size:.98rem}
+.who{list-style:none;display:grid;gap:10px;margin-top:12px}
+.who li{position:relative;padding-left:22px;color:var(--muted);font-size:.97rem}
+.who li::before{content:"";position:absolute;left:0;top:.6em;width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.who li b{color:var(--ink)}
+.areas{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.areas span{background:var(--mint);color:var(--green-dark);font-size:.85rem;font-weight:700;padding:.1rem .7rem;border-radius:999px}
+.value{margin-top:20px;padding:20px 22px;border-radius:16px;background:var(--green);color:#fff}
+.value h3{color:#fff}
+.value p{color:#E6F7EE}
+.founder{margin-top:16px;display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:var(--gold-soft)}
+.avatar{width:52px;height:52px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font:800 1.2rem var(--head);color:var(--ink);flex:none}
+.founder small{color:var(--muted);display:block}
+
+/* ---------- Services ---------- */
+.price-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:18px}
+table{width:100%;border-collapse:collapse;min-width:700px}
+th,td{padding:15px 20px;text-align:left;border-bottom:1px solid var(--line)}
+th{background:var(--mint);font:600 1rem var(--head)}
+tr:last-child td{border-bottom:none}
+td.price{font:800 1.2rem var(--head);color:var(--green-dark);white-space:nowrap}
+td.price small{display:block;font:600 .82rem var(--body);color:var(--muted)}
+td .btn{padding:.38rem 1rem;font-size:.9rem}
+.svc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+.svc{padding:22px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.svc .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:12px;font-size:1.4rem}
+.svc:nth-child(1) .ico{background:var(--gold-soft)}
+.svc:nth-child(2) .ico{background:var(--mint)}
+.svc:nth-child(3) .ico{background:var(--sky)}
+.svc p{color:var(--muted);font-size:.97rem}
+.note{margin-top:16px;color:var(--muted);font-size:.94rem}
+
+/* ---------- Dashboard ---------- */
+#dashboard{background:var(--surface);border-block:1px solid var(--line)}
+.dash-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:26px}
+.pill{display:inline-block;padding:.2rem .75rem;border-radius:999px;font-size:.83rem;font-weight:700;white-space:nowrap}
+.pill-ok{background:var(--mint);color:var(--green-dark)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.kpi{padding:20px 22px;border-radius:16px;border:1px solid var(--line);background:var(--bg);position:relative;overflow:hidden}
+.kpi::before{content:"";position:absolute;inset:0 auto 0 0;width:6px;background:var(--c,var(--green))}
+.kpi span{display:block;color:var(--muted);font-weight:700;font-size:.95rem}
+.kpi strong{display:block;font:800 2.4rem var(--head);margin:.05rem 0}
+.kpi small{color:var(--muted)}
+.panels{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:16px}
+.panels.even{grid-template-columns:1fr 1fr}
+.panel{padding:22px;border-radius:16px;border:1px solid var(--line);background:var(--bg)}
+.panel .sub{color:var(--muted);font-size:.93rem;margin-bottom:14px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.9rem;margin-top:12px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.donut-box{display:grid;place-items:center;position:relative}
+.donut-center{position:absolute;text-align:center}
+.donut-center strong{font:800 1.9rem var(--head);display:block;line-height:1.1}
+.donut-center span{color:var(--muted);font-size:.85rem}
+.bar-row{display:grid;grid-template-columns:150px 1fr 48px;gap:12px;align-items:center;margin-bottom:11px;font-size:.95rem}
+.bar{height:13px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar b{display:block;height:100%;border-radius:99px}
+.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:4px}
+.insight{padding:18px 20px;border-radius:14px;background:var(--gold-soft);border:1px solid #F6DFA3}
+.insight b{font-family:var(--head);font-size:1.05rem;display:block;margin-bottom:.2rem}
+.insight p{font-size:.95rem;color:#5E4A12}
+.dash-links{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:22px}
+
+/* ---------- Quote (interactive feature) ---------- */
+.quote-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:26px;align-items:start}
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 18px 40px -30px rgba(29,58,47,.5)}
+.q-form{display:grid;gap:16px}
+label{display:grid;gap:6px;font-weight:700;font-size:.95rem}
+select,input[type=text],input[type=tel],input[type=email],textarea{font:600 1rem var(--body);padding:.72rem .9rem;border-radius:12px;border:2px solid var(--line);background:#fff;color:var(--ink);width:100%}
+select:focus,input:focus,textarea:focus{outline:none;border-color:var(--green)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+input[type=range]{width:100%;accent-color:var(--green)}
+.kg-out{color:var(--green-dark);font-weight:700}
+.check{display:flex;align-items:center;gap:10px;font-weight:700;padding:12px 14px;border:2px solid var(--line);border-radius:12px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--green)}
+.check small{display:block;font-weight:400;color:var(--muted)}
+.hint{color:var(--muted);font-size:.9rem}
+.map-card{padding:16px}
+#map svg{width:100%;height:auto;cursor:pointer}
+#map .zone text{font:700 12px var(--body);fill:#1D3A2F;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}
+#map .zone:hover circle{stroke:var(--gold)}
+.out{margin-top:16px;border-radius:18px;background:var(--mint);border:1px solid #BFE5D0;padding:20px 22px}
+.out .big{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.out .big strong{font:800 2.8rem var(--head);color:var(--green-dark);line-height:1}
+.out .big span{color:var(--muted);font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stats div{background:#fff;border-radius:12px;padding:10px 12px}
+.stats span{display:block;font-size:.82rem;color:var(--muted)}
+.stats b{font-size:1.05rem}
+.break{list-style:none;font-size:.95rem;border-top:1px dashed #9ACBB0;padding-top:10px}
+.break li{display:flex;justify-content:space-between;gap:12px;padding:2px 0}
+.out .actions{margin-top:16px}
+
+/* ---------- Contact ---------- */
+#contact{background:var(--surface);border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:44px}
+.contact-list{list-style:none;display:grid;gap:14px;margin-top:22px}
+.contact-list li{display:flex;gap:14px;align-items:flex-start;padding:15px 18px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+.contact-list .ci{font-size:1.4rem;line-height:1.2}
+.contact-list b{display:block;font-family:var(--head);font-weight:600}
+.contact-list a{word-break:break-word}
+#enquiryForm{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:26px;display:grid;gap:16px}
+textarea{min-height:100px;resize:vertical}
+.error,.ok{padding:14px 16px;border-radius:12px;font-size:.98rem}
+.error{background:var(--coral-soft);color:#8E2C12}
+.ok{background:var(--mint);color:#0F5A38;font-weight:600}
+.ok a{font-weight:700}
+
+/* ---------- Footer ---------- */
+footer{background:var(--mint);color:var(--ink);padding:30px 0 24px}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:34px}
+footer h3{font-size:1.05rem}
+footer ul{list-style:none;display:grid;gap:.4rem;font-size:.97rem}
+footer .brand{margin-bottom:8px}
+.copy{margin-top:28px;padding-top:16px;border-top:1px solid #BFE5D0;font-size:.88rem;color:var(--muted)}
+
+/* ---------- Pictures ---------- */
+.illus{position:relative}
+.illus>svg{width:100%;height:auto;border-radius:26px;box-shadow:0 22px 44px -28px rgba(29,58,47,.55)}
+.float{position:absolute;background:#fff;border:1px solid var(--line);border-radius:999px;padding:.3rem .9rem;font-weight:700;font-size:.9rem;box-shadow:0 10px 24px -14px rgba(29,58,47,.5);white-space:nowrap}
+.float.f1{top:5%;left:3%}.float.f2{top:33%;right:2%}.float.f3{left:4%;bottom:7%}
+.tiles-strip{margin-top:46px}
+.tiles-strip .tiles{grid-template-columns:repeat(3,1fr)}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:38px}
+.step{border-radius:18px;border:1px solid var(--line);background:var(--bg);overflow:hidden;text-align:center}
+.step .pic{background:linear-gradient(180deg,#FFF7DD,#E7F6EC);padding:14px 20px 0}
+.step .pic svg{height:120px;width:auto;margin:0 auto}
+.step .txt{padding:16px 18px 20px}
+.step .num{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;font-weight:700;margin-right:8px;font-size:.9rem}
+.step h3{display:inline}
+.step p{color:var(--muted);font-size:.96rem;margin-top:6px}
+.gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:26px}
+.gcard{border-radius:18px;border:1px solid var(--line);background:var(--surface);overflow:hidden;display:flex;flex-direction:column}
+.gcard .pic{padding:14px 10px 6px}
+.gcard .pic svg{height:100px;width:100%}
+.gcard .body{padding:12px 14px 16px;display:flex;flex-direction:column;gap:2px;flex:1}
+.gcard b{font-family:var(--head);font-size:1.02rem;line-height:1.2}
+.gcard small{color:var(--muted);margin-bottom:8px}
+.gcard .btn{margin-top:auto;padding:.35rem 1rem;font-size:.9rem}
+.skyline{display:block;width:100%;height:96px;margin-top:20px}
+
+/* ---------- Responsive ---------- */
+@media(max-width:920px){
+  .hero,.about-grid,.contact-grid,.panels,.panels.even,.quote-grid{grid-template-columns:1fr}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .svc-cards,.problem,.insights{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  .menu-btn{display:block}
+  .nav ul{display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;align-items:stretch;background:#fff;padding:12px 4%;border-bottom:1px solid var(--line)}
+  .nav ul.open{display:flex}
+  section{padding:64px 0}
+}
+@media(max-width:920px){
+  .steps3{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .tiles-strip .tiles{grid-template-columns:1fr 1fr}
+  .float{font-size:.8rem}
+}
+@media(max-width:520px){
+  .tiles-strip .tiles{grid-template-columns:1fr}
+  .kpis,.row2,.tiles,.stats{grid-template-columns:1fr}
+  .bar-row{grid-template-columns:110px 1fr 44px}
+  body{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="rider" viewBox="0 0 150 110">
+  <g stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".9"><path d="M2 58h18M6 70h16M2 82h14"/></g>
+  <circle cx="40" cy="92" r="15" fill="#1D3A2F"/><circle cx="40" cy="92" r="6" fill="#E5E9DC"/>
+  <circle cx="118" cy="92" r="15" fill="#1D3A2F"/><circle cx="118" cy="92" r="6" fill="#E5E9DC"/>
+  <path d="M46 92 L50 66 Q52 58 62 58 L98 58 Q110 58 114 70 L120 92 Z" fill="#1F8A5B"/>
+  <path d="M116 92 L110 52 L118 44" fill="none" stroke="#1D3A2F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M110 44 L128 40" stroke="#1D3A2F" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="127" cy="50" r="3.5" fill="#F7A81B"/>
+  <rect x="50" y="50" width="42" height="10" rx="5" fill="#1D3A2F"/>
+  <rect x="26" y="14" width="40" height="38" rx="6" fill="#F7A81B" stroke="#B87300" stroke-width="2"/>
+  <path d="M26 26h40" stroke="#B87300" stroke-width="2"/>
+  <circle cx="46" cy="39" r="7" fill="#fff"/><circle cx="46" cy="39" r="3.5" fill="#1F8A5B"/>
+  <path d="M64 50 L72 22 Q76 14 85 18 L95 44 Z" fill="#2E8FC2"/>
+  <circle cx="82" cy="10" r="10" fill="#E8B48A"/>
+  <path d="M71 10 A11 11 0 0 1 93 10 L93 12 L71 12 Z" fill="#E4572E"/>
+  <path d="M90 25 L121 40" stroke="#2E8FC2" stroke-width="7" stroke-linecap="round"/>
+  <path d="M70 46 L84 80" stroke="#1D3A2F" stroke-width="8" stroke-linecap="round"/>
+</symbol></defs></svg>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="SevaGo Vadodara home">
+      <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
+        <rect width="48" height="48" rx="13" fill="#1F8A5B"/>
+        <circle cx="24" cy="17" r="9" fill="#fff"/>
+        <circle cx="15" cy="21" r="6.5" fill="#fff"/>
+        <circle cx="33" cy="21" r="6.5" fill="#fff"/>
+        <path d="M24 22v16M18 26v10M30 26v10" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="37" cy="11" r="4.5" fill="#F7A81B"/>
+      </svg>
+      SevaGo
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+    <ul id="menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#quote">Get a quote</a></li>
+      <li><a href="#contact" class="cta">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= 1. HOME ================= -->
+<section id="home">
+  <div class="wrap hero">
+    <div>
+      <span class="hello">Kem cho, Vadodara! 👋</span>
+      <h1>Everyday needs of Vadodara, delivered to your door.</h1>
+      <p class="lead">Forgot your tiffin? Dadi needs medicines? A file has to reach Makarpura by evening? SevaGo handles tiffin, medicines, groceries, documents and laundry across 14 areas of Vadodara, with one clear price list and verified riders.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#quote">Get Started</a>
+        <a class="btn btn-ghost" href="#services">See services and prices</a>
+      </div>
+      <p class="purpose"><b>Our purpose:</b> save Vadodara families and offices the daily hassle of calling different people for different errands, by giving them one trusted delivery service with prices known in advance.</p>
+    </div>
+
+    <div class="illus">
+      <svg viewBox="0 0 560 440" role="img" aria-label="Illustration of a SevaGo rider delivering past Laxmi Vilas Palace and a banyan tree in Vadodara">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF1CC"/><stop offset="1" stop-color="#E2F5EA"/></linearGradient>
+    <clipPath id="heroClip"><rect width="560" height="440" rx="26"/></clipPath>
+  </defs>
+  <g clip-path="url(#heroClip)">
+    <rect width="560" height="440" fill="url(#sky)"/>
+    <circle cx="450" cy="92" r="64" fill="#FDE3A1" opacity=".7"/><circle cx="450" cy="92" r="42" fill="#F7A81B"/>
+    <g fill="#fff" opacity=".92"><ellipse cx="120" cy="70" rx="42" ry="14"/><ellipse cx="150" cy="60" rx="28" ry="14"/><ellipse cx="320" cy="48" rx="36" ry="11"/><ellipse cx="342" cy="40" rx="22" ry="11"/></g>
+    <path d="M372 64 q8 -8 16 0 q8 -8 16 0 M400 88 q6 -6 12 0 q6 -6 12 0" stroke="#566C62" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Laxmi Vilas style palace -->
+    <g>
+      <rect x="40" y="258" width="250" height="72" fill="#F2D3A0"/>
+      <rect x="128" y="214" width="82" height="116" fill="#EBC283"/>
+      <path d="M126 214 A43 43 0 0 1 212 214 Z" fill="#E4A94F"/>
+      <rect x="167" y="160" width="4" height="22" fill="#B87300"/><circle cx="169" cy="157" r="5" fill="#B87300"/>
+      <rect x="56" y="200" width="34" height="130" fill="#EBC283"/><path d="M52 200 A21 21 0 0 1 94 200 Z" fill="#E4A94F"/><rect x="71" y="172" width="3" height="14" fill="#B87300"/>
+      <rect x="250" y="200" width="34" height="130" fill="#EBC283"/><path d="M246 200 A21 21 0 0 1 288 200 Z" fill="#E4A94F"/><rect x="265" y="172" width="3" height="14" fill="#B87300"/>
+      <g fill="#C9954A">
+        <path d="M137 330 v-34 a8 8 0 0 1 16 0 v34 Z"/><path d="M161 330 v-34 a8 8 0 0 1 16 0 v34 Z"/><path d="M185 330 v-34 a8 8 0 0 1 16 0 v34 Z"/>
+        <path d="M100 330 v-24 a7 7 0 0 1 14 0 v24 Z"/><path d="M216 330 v-24 a7 7 0 0 1 14 0 v24 Z"/>
+        <path d="M65 330 v-22 a8 8 0 0 1 16 0 v22 Z"/><path d="M259 330 v-22 a8 8 0 0 1 16 0 v22 Z"/>
+        <path d="M65 256 v-16 a8 8 0 0 1 16 0 v16 Z"/><path d="M259 256 v-16 a8 8 0 0 1 16 0 v16 Z"/>
+        <path d="M161 262 v-22 a8 8 0 0 1 16 0 v22 Z"/>
+      </g>
+    </g>
+    <!-- Banyan tree -->
+    <g>
+      <path d="M455 330 L458 268 Q468 260 478 268 L482 330 Z" fill="#8B5E3C"/>
+      <g stroke="#8B5E3C" stroke-width="3.5" stroke-linecap="round"><path d="M420 262V330M436 270V330M506 266V330M524 258V330"/></g>
+      <g fill="#3FB37F"><circle cx="440" cy="232" r="42"/><circle cx="494" cy="226" r="46"/><circle cx="466" cy="196" r="40"/><circle cx="526" cy="252" r="30"/><circle cx="410" cy="256" r="32"/></g>
+      <g fill="#1F8A5B" opacity=".8"><circle cx="470" cy="214" r="26"/><circle cx="430" cy="240" r="20"/><circle cx="506" cy="240" r="22"/></g>
+    </g>
+    <rect y="326" width="560" height="22" fill="#BFE5C9"/>
+    <rect y="346" width="560" height="62" fill="#D5DCD6"/>
+    <path d="M0 347h560" stroke="#B9C4BD" stroke-width="3"/>
+    <path d="M0 378h560" stroke="#fff" stroke-width="4" stroke-dasharray="18 14"/>
+    <rect y="408" width="560" height="32" fill="#CDEBD6"/>
+    <!-- route + pin -->
+    <path d="M262 266 Q290 190 352 196" fill="none" stroke="#E4572E" stroke-width="4" stroke-dasharray="2 9" stroke-linecap="round"/>
+    <path d="M352 150 c-15 0-26 11-26 25 0 19 26 42 26 42 s26-23 26-42 c0-14-11-25-26-25z" fill="#E4572E"/>
+    <circle cx="352" cy="174" r="9" fill="#fff"/>
+    <use href="#rider" x="190" y="262" width="195" height="143"/>
+  </g>
+</svg>
+      <span class="float f1">🍱 Lunch on time</span>
+      <span class="float f2">💊 Medicines, fast</span>
+      <span class="float f3">📍 14 areas of Vadodara</span>
+    </div>
+  </div>
+
+  <div class="wrap tiles-strip">
+    <div class="tiles-box">
+      <h3>What do you need today?</h3>
+      <div class="tiles" id="homeTiles"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2. ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>About SevaGo</h2>
+      <p class="lead">SevaGo is a hyperlocal delivery service built for the daily routine of Vadodara.</p>
+    </div>
+
+    <div class="problem">
+      <div class="card"><h3>Too many phone numbers</h3><p>One number for the tiffin wala, another for the medical store, another for a courier. Nobody remembers them all when they are in a hurry.</p></div>
+      <div class="card"><h3>Unclear prices</h3><p>Local errand runners often quote a different price each time, so customers cannot plan or compare.</p></div>
+      <div class="card"><h3>No one to send</h3><p>Working couples, students and elderly parents often have nobody free to run a small errand across the city.</p></div>
+    </div>
+
+    <h3 style="font-size:1.5rem;margin-bottom:14px">How SevaGo works in 3 steps</h3>
+    <div class="steps3">
+      <div class="step"><div class="pic"><svg viewBox="0 0 160 110" aria-hidden="true"><rect x="54" y="6" width="52" height="98" rx="12" fill="#1D3A2F"/><rect x="60" y="16" width="40" height="78" rx="5" fill="#fff"/>
+<path d="M80 28c-6 0-10 4-10 9 0 7 10 16 10 16s10-9 10-16c0-5-4-9-10-9z" fill="#E4572E"/><circle cx="80" cy="37" r="3.5" fill="#fff"/>
+<rect x="66" y="60" width="28" height="9" rx="4.5" fill="#E2F5EA"/><text x="80" y="67" font-size="7.5" font-weight="800" text-anchor="middle" fill="#1F8A5B">₹68</text>
+<rect x="66" y="76" width="28" height="11" rx="5.5" fill="#1F8A5B"/>
+<circle cx="30" cy="34" r="6" fill="#F7A81B"/><circle cx="130" cy="70" r="8" fill="#BFE5C9"/><circle cx="120" cy="22" r="4" fill="#F7A81B"/></svg></div><div class="txt"><span class="num">1</span><h3>Get a quote and book</h3><p>Pick the service and two Vadodara areas. See the exact price first, then book on the form or WhatsApp.</p></div></div>
+      <div class="step"><div class="pic"><svg viewBox="0 0 160 110" aria-hidden="true"><rect x="10" y="100" width="140" height="4" rx="2" fill="#BFE5C9"/><use href="#rider" x="22" y="12" width="116" height="85"/></svg></div><div class="txt"><span class="num">2</span><h3>Our rider picks up</h3><p>A verified rider collects from the kitchen, chemist, shop, office or home and heads straight out.</p></div></div>
+      <div class="step"><div class="pic"><svg viewBox="0 0 160 110" aria-hidden="true"><rect x="10" y="100" width="140" height="4" rx="2" fill="#BFE5C9"/>
+<rect x="38" y="48" width="84" height="52" rx="3" fill="#F2D3A0"/><path d="M30 52 L80 16 L130 52 Z" fill="#E4572E"/>
+<rect x="70" y="68" width="20" height="32" rx="3" fill="#8B5E3C"/><rect x="46" y="60" width="16" height="16" rx="2" fill="#E1F0FA" stroke="#B88A4A" stroke-width="2"/><rect x="98" y="60" width="16" height="16" rx="2" fill="#E1F0FA" stroke="#B88A4A" stroke-width="2"/>
+<rect x="94" y="86" width="22" height="14" rx="2" fill="#F7A81B" stroke="#B87300" stroke-width="2"/>
+<circle cx="136" cy="24" r="14" fill="#1F8A5B"/><path d="M129 24 l5 5 l9 -11" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="txt"><span class="num">3</span><h3>Delivered to the door</h3><p>The order reaches the drop address, usually within the hour, at the price you were quoted.</p></div></div>
+    </div>
+
+    <div class="about-grid">
+      <div>
+        <h3>What SevaGo does</h3>
+        <p class="lead" style="font-size:1rem">We pick up from a home kitchen, a medical store, a kirana shop, an office or a house, and deliver to the address you choose. Price depends on the service and the distance between two Vadodara areas, and you can see it before you book.</p>
+        <div class="value">
+          <h3>Our value to you</h3>
+          <p>One booking number, a price you know before you book, delivery in under an hour for most trips, and riders whose licences we verify.</p>
+        </div>
+        <div class="founder">
+          <div class="avatar">AM</div>
+          <div><b>Aishwarya M Sanjaykumar</b><small>Founder and Manager, SevaGo Vadodara</small></div>
+        </div>
+      </div>
+
+      <div class="facts">
+        <div class="fact"><h3>Who we serve</h3>
+          <p>Vadodara is a city of students, offices, factories and close-knit families, and each group has its own daily errand.</p>
+          <ul class="who">
+            <li><b>Students and young professionals.</b> Around The Maharaja Sayajirao University (MSU), Fatehgunj and Sayajigunj, who order tiffin, groceries and documents to hostels and PGs.</li>
+            <li><b>Offices and working professionals.</b> In business areas like Alkapuri, Akota, Subhanpura and Gotri, who need lunch, files and parcels sent in under an hour.</li>
+            <li><b>Industrial belts and small businesses.</b> Around Makarpura and Waghodia Road, where offices and shops need document runs and supplies without sending staff out.</li>
+            <li><b>Families and elderly residents.</b> In Manjalpur, Tandalja, Vasna and Gorwa, who rely on medicines and groceries brought to the door.</li>
+            <li><b>Home cooks, chemists and kirana shops.</b> Local sellers who gain delivery to customers beyond their own lane without owning a rider.</li>
+            <li><b>Festival season.</b> During Navratri, when Vadodara is busiest, we handle extra tiffin, laundry and gift orders.</li>
+          </ul></div>
+        <div class="fact"><h3>Where we operate</h3><p>Central and nearby Vadodara, in 14 areas. You can check your ward and city services on the <a href="https://vmc.gov.in/" target="_blank" rel="noopener">Vadodara Municipal Corporation</a> website.</p>
+          <div class="areas"><span>Alkapuri</span><span>Sayajigunj</span><span>Fatehgunj</span><span>Karelibaug</span><span>Harni</span><span>Gorwa</span><span>Subhanpura</span><span>Gotri</span><span>Akota</span><span>Vasna</span><span>Tandalja</span><span>Manjalpur</span><span>Makarpura</span><span>Waghodia Road</span></div></div>
+        <div class="fact"><h3>Trust and safety</h3><p>Partner home kitchens must hold FSSAI registration (rules and registration are on the <a href="https://foscos.fssai.gov.in/" target="_blank" rel="noopener">FSSAI FoSCoS portal</a>). Riders must hold a valid driving licence (licence and vehicle rules are on the <a href="https://parivahan.gov.in/" target="_blank" rel="noopener">Parivahan Sewa portal</a>).</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. SERVICES ================= -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Services and prices</h2>
+      <p class="lead">Every price is a base fare plus a small rate per kilometre, so a short trip costs little and you always see the total first.</p>
+    </div>
+
+    <div class="gallery" id="svcGallery"></div>
+
+    <div class="price-wrap">
+      <table>
+        <thead>
+          <tr><th>Service</th><th>Description</th><th>Typical time</th><th>Price</th><th></th></tr>
+        </thead>
+        <tbody id="svcRows"></tbody>
+      </table>
+    </div>
+
+    <div class="svc-cards">
+      <div class="svc"><div class="ico">💰</div><h3>Price before you book</h3><p>Use the quote tool to see the exact fare between any two Vadodara areas.</p></div>
+      <div class="svc"><div class="ico">⚡</div><h3>Express when you are late</h3><p>Add Express for +₹40 and your rider heads straight to the drop, with a faster arrival window.</p></div>
+      <div class="svc"><div class="ico">💬</div><h3>Book on WhatsApp</h3><p>Send your quote on WhatsApp in one tap and get a reply from our team.</p></div>
+    </div>
+    <p class="note">Extra weight above 5 kg is charged at ₹6 per kg. Prices are for this class project demo.</p>
+  </div>
+</section>
+
+<!-- ================= 4. DASHBOARD ================= -->
+<section id="dashboard">
+  <div class="wrap">
+    <div class="dash-head">
+      <div>
+        <h2>Manager dashboard</h2>
+        <p class="lead">What does the manager need to know right now? How many orders are late, which service and time slot drive the work, and which areas cause delays.</p>
+      </div>
+      <span class="pill pill-ok">Sample data: this month</span>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi" style="--c:#1F8A5B"><span>Total orders</span><strong>4,200</strong><small>Booked this month</small></div>
+      <div class="kpi" style="--c:#3FB37F"><span>Delivered</span><strong>3,780</strong><small>90.0% of all orders</small></div>
+      <div class="kpi" style="--c:#2E8FC2"><span>In transit</span><strong>260</strong><small>Riders on the road</small></div>
+      <div class="kpi" style="--c:#E4572E"><span>Delayed</span><strong>160</strong><small>Late by 15 minutes or more</small></div>
+      <div class="kpi" style="--c:#F7A81B"><span>On-time delivery</span><strong>90.0%</strong><small>Target: 92%</small></div>
+      <div class="kpi" style="--c:#8B6FD1"><span>Average delivery time</span><strong>47 min</strong><small>Order to doorstep</small></div>
+    </div>
+
+    <div class="panels">
+      <div class="panel">
+        <h3>Orders by service</h3>
+        <p class="sub">Which everyday need is booked the most</p>
+        <div id="svcBars"></div>
+      </div>
+      <div class="panel">
+        <h3>Order status split</h3>
+        <p class="sub">Share of all 4,200 orders</p>
+        <div class="donut-box">
+          <div id="donut"></div>
+          <div class="donut-center"><strong>90.0%</strong><span>delivered</span></div>
+        </div>
+        <div class="legend">
+          <span><i style="background:#3FB37F"></i>Delivered 3,780</span>
+          <span><i style="background:#2E8FC2"></i>In transit 260</span>
+          <span><i style="background:#E4572E"></i>Delayed 160</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panels even">
+      <div class="panel">
+        <h3>Orders by time of day</h3>
+        <p class="sub">When demand peaks, so the manager can plan riders</p>
+        <div id="timeChart"></div>
+      </div>
+      <div class="panel">
+        <h3>Where the 160 delays come from</h3>
+        <p class="sub">Delayed orders by delivery area</p>
+        <div id="zoneBars"></div>
+      </div>
+    </div>
+
+    <div class="insights">
+      <div class="insight"><b>Fix delays in two areas</b><p>Makarpura and Karelibaug cause 36% of delays (58 of 160). Add a rider on these routes at peak hours.</p></div>
+      <div class="insight"><b>Plan for the lunch rush</b><p>10 AM to 2 PM is the busiest slot with 1,380 orders (33% of the month). Keep most riders on duty then.</p></div>
+      <div class="insight"><b>Grow what works</b><p>Tiffin is the top service with 1,350 orders (32%). Tie up with more home kitchens in the busiest areas.</p></div>
+    </div>
+
+    <div class="dash-links">
+      <a class="btn btn-primary" href="#quote">Try the delivery quote tool</a>
+      <a class="btn btn-ghost" href="#contact">Contact the manager</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. QUOTE (interactive feature) ================= -->
+<section id="quote">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Delivery cost and time calculator</h2>
+      <p class="lead">Choose a service, pick up and drop areas, and the weight. You get the price, distance and delivery time instantly. Tapping two areas on the map also works.</p>
+    </div>
+
+    <div class="quote-grid">
+      <div class="q-card">
+        <div class="q-form">
+          <label>Service<select id="calcService"></select></label>
+          <div class="row2">
+            <label>Pickup area<select id="calcFrom"></select></label>
+            <label>Drop area<select id="calcTo"></select></label>
+          </div>
+          <label>Weight: <span class="kg-out" id="kgOut">3 kg</span>
+            <input type="range" id="calcKg" min="1" max="20" step="1" value="3">
+          </label>
+          <label class="check"><input type="checkbox" id="calcExpress"><span>Express delivery (+₹40)<small>Rider goes straight to the drop for a faster arrival</small></span></label>
+        </div>
+
+        <div class="out" id="quoteOut" aria-live="polite"></div>
+      </div>
+
+      <div class="q-card map-card">
+        <div id="map"></div>
+        <p class="hint" style="margin:8px 6px 0">Schematic map of Vadodara areas, not to scale. Tap an area to set the pickup first, then the drop. Distances are approximate road distances.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6. CONTACT ================= -->
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Contact and enquiries</h2>
+      <p class="lead">Questions, bulk orders for an office, or a home kitchen that wants to partner with us? Send an enquiry or message us directly.</p>
+      <ul class="contact-list">
+        <li><span class="ci">👩‍💼</span><div><b>Aishwarya M Sanjaykumar</b>Founder and Manager, SevaGo Vadodara</div></li>
+        <li><span class="ci">📞</span><div><b>Phone</b><a href="tel:+919662300543">+91 96623 00543</a><br><small>Every day, 7 AM to 10 PM</small></div></li>
+        <li><span class="ci">💬</span><div><b>WhatsApp</b><a href="https://wa.me/919662300543?text=Hello%20SevaGo%2C%20I%20want%20to%20book%20a%20delivery%20in%20Vadodara." target="_blank" rel="noopener">Message us to book a delivery</a></div></li>
+        <li><span class="ci">✉️</span><div><b>Email</b><a href="mailto:sevago.vadodara@example.com?subject=SevaGo%20enquiry">sevago.vadodara@example.com</a></div></li>
+        <li><span class="ci">📍</span><div><b>Office</b>Alkapuri, R.C. Dutt Road, Vadodara, Gujarat 390007<br><a href="https://www.google.com/maps/search/?api=1&query=Alkapuri+R.C.+Dutt+Road+Vadodara+Gujarat" target="_blank" rel="noopener">Open in Google Maps</a></div></li>
+        <li><span class="ci">💼</span><div><b>LinkedIn</b><a href="https://www.linkedin.com/search/results/companies/?keywords=hyperlocal%20delivery%20vadodara" target="_blank" rel="noopener">Follow SevaGo for news and offers</a></div></li>
+      </ul>
+    </div>
+
+    <form id="enquiryForm" novalidate>
+      <div class="row2">
+        <label>Your name<input type="text" id="fName" placeholder="Full name"></label>
+        <label>Mobile number<input type="tel" id="fPhone" placeholder="10-digit mobile number"></label>
+      </div>
+      <label>Email (optional)<input type="email" id="fEmail" placeholder="you@example.com"></label>
+      <label>Service<select id="fService"></select></label>
+      <label>Message<textarea id="fMsg" placeholder="Tell us what to pick up, from where, and where to deliver."></textarea></label>
+      <div id="formMsg" aria-live="polite"></div>
+      <button class="btn btn-primary" type="submit">Send enquiry</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<svg class="skyline" viewBox="0 0 1440 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <g fill="#EEF8F2"><rect x="0" y="70" width="90" height="50"/><rect x="110" y="55" width="60" height="65"/><rect x="760" y="60" width="70" height="60"/><rect x="850" y="75" width="60" height="45"/><rect x="1240" y="58" width="80" height="62"/><rect x="1340" y="72" width="100" height="48"/></g>
+  <g fill="#E2F5EA">
+    <rect x="0" y="108" width="1440" height="12"/>
+    <rect x="240" y="76" width="70" height="44"/><rect x="320" y="62" width="50" height="58"/>
+    <g><rect x="440" y="62" width="220" height="58"/><rect x="520" y="46" width="60" height="74"/><path d="M516 46 A34 34 0 0 1 584 46 Z"/><rect x="548" y="6" width="4" height="16"/><circle cx="550" cy="5" r="4"/>
+       <rect x="446" y="34" width="24" height="86"/><path d="M442 34 A16 16 0 0 1 474 34 Z"/><rect x="630" y="34" width="24" height="86"/><path d="M626 34 A16 16 0 0 1 658 34 Z"/></g>
+    <path d="M900 120 V84 L920 38 L940 84 V120 Z"/><rect x="916" y="22" width="8" height="18"/>
+    <g><rect x="140" y="88" width="8" height="32"/><circle cx="130" cy="78" r="22"/><circle cx="158" cy="74" r="24"/><circle cx="144" cy="58" r="20"/></g>
+    <g><rect x="1096" y="84" width="9" height="36"/><circle cx="1084" cy="72" r="24"/><circle cx="1116" cy="68" r="26"/><circle cx="1100" cy="50" r="22"/></g>
+    <rect x="1000" y="70" width="64" height="50"/><rect x="1170" y="80" width="56" height="40"/>
+  </g></svg>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#home">SevaGo</a>
+        <p>Everyday deliveries across Vadodara: tiffin, medicines, groceries, documents and laundry.</p>
+        <p style="margin-top:8px"><b>Aishwarya M Sanjaykumar</b><br><a href="tel:+919662300543">+91 96623 00543</a></p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="#services">Services and prices</a></li>
+          <li><a href="#dashboard">Manager dashboard</a></li>
+          <li><a href="#quote">Get a quote</a></li>
+          <li><a href="#contact">Contact us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>City and industry resources</h3>
+        <ul>
+          <li><a href="https://vmc.gov.in/" target="_blank" rel="noopener">Vadodara Municipal Corporation</a></li>
+          <li><a href="https://fssai.gov.in/" target="_blank" rel="noopener">FSSAI (food safety rules)</a></li>
+          <li><a href="https://parivahan.gov.in/" target="_blank" rel="noopener">Parivahan Sewa (licence and vehicle rules)</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="copy">© 2026 SevaGo Vadodara. Student project by Aishwarya M Sanjaykumar for the ITBT live class exercise. All orders, prices and figures are sample data.</p>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   CONFIG: change the phone number here and in the HTML links if needed
+   ========================================================= */
+const WHATSAPP = '919662300543';
+
+/* ---------- Services (single source of truth for table, tiles, calculator) ---------- */
+const SERVICES = [
+  {id:'tiffin',   name:'Tiffin and Home Food',    ico:'🍱', desc:'Home-cooked tiffin or restaurant food from the kitchen to your office, hostel or home', time:'30 to 60 min', base:20, perKm:7,  min:40},
+  {id:'medicine', name:'Medicine Delivery',       ico:'💊', desc:'Prescription and OTC medicines from your chemist, delivered fast', time:'30 to 60 min', base:30, perKm:8,  min:49},
+  {id:'grocery',  name:'Grocery and Kirana Run',  ico:'🛒', desc:'Daily items from your local kirana, dairy or vegetable seller', time:'45 to 90 min', base:35, perKm:9,  min:59},
+  {id:'docs',     name:'Document and Parcel',     ico:'📄', desc:'Files, forms, keys and small parcels between homes and offices', time:'30 to 60 min', base:25, perKm:8,  min:40},
+  {id:'laundry',  name:'Laundry Pickup and Drop', ico:'👕', desc:'Clothes collected from your home and delivered to the laundry, or back', time:'1 to 2 hours', base:45, perKm:10, min:69}
+];
+const FREE_KG = 5, EXTRA_KG_RATE = 6, EXPRESS_FEE = 40, ROAD_FACTOR = 1.35;
+const ART = {
+  tiffin:`<svg viewBox="0 0 120 100" aria-hidden="true"><ellipse cx="60" cy="92" rx="34" ry="5" fill="#1D3A2F" opacity=".1"/>
+<rect x="34" y="62" width="52" height="24" rx="6" fill="#F7A81B"/><rect x="34" y="42" width="52" height="22" rx="6" fill="#1F8A5B"/><rect x="34" y="24" width="52" height="20" rx="6" fill="#F7A81B"/>
+<path d="M42 26 Q60 4 78 26" fill="none" stroke="#1D3A2F" stroke-width="4" stroke-linecap="round"/>
+<path d="M30 30 V80 M90 30 V80" stroke="#1D3A2F" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+<path d="M46 16 q-4 -5 0 -10 M60 14 q-4 -5 0 -10 M74 16 q-4 -5 0 -10" fill="none" stroke="#8FB7A3" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+  medicine:`<svg viewBox="0 0 120 100" aria-hidden="true"><ellipse cx="60" cy="92" rx="36" ry="5" fill="#1D3A2F" opacity=".1"/>
+<rect x="30" y="34" width="36" height="52" rx="7" fill="#fff" stroke="#1F8A5B" stroke-width="3"/><rect x="34" y="22" width="28" height="14" rx="4" fill="#1F8A5B"/>
+<path d="M48 50v20M38 60h20" stroke="#E4572E" stroke-width="6" stroke-linecap="round"/>
+<g transform="rotate(-35 86 72)"><rect x="68" y="63" width="36" height="18" rx="9" fill="#fff" stroke="#E4572E" stroke-width="3"/><path d="M86 63 H95 A9 9 0 0 1 95 81 H86 Z" fill="#E4572E"/></g></svg>`,
+  grocery:`<svg viewBox="0 0 120 100" aria-hidden="true"><ellipse cx="60" cy="94" rx="34" ry="4" fill="#1D3A2F" opacity=".1"/>
+<ellipse cx="40" cy="34" rx="8" ry="15" transform="rotate(-22 40 34)" fill="#3FB37F"/><ellipse cx="54" cy="28" rx="8" ry="16" fill="#1F8A5B"/>
+<path d="M68 20 L80 44 L64 42 Z" fill="#F7A81B"/><circle cx="80" cy="38" r="10" fill="#E4572E"/>
+<path d="M28 44 H92 L86 92 H34 Z" fill="#F2D3A0" stroke="#B88A4A" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="60" cy="68" r="11" fill="#fff" opacity=".85"/><text x="60" y="73" text-anchor="middle" font-size="14" font-weight="800" fill="#1F8A5B">₹</text></svg>`,
+  docs:`<svg viewBox="0 0 120 100" aria-hidden="true"><ellipse cx="60" cy="94" rx="38" ry="4" fill="#1D3A2F" opacity=".1"/>
+<rect x="28" y="14" width="46" height="62" rx="5" fill="#fff" stroke="#2E8FC2" stroke-width="3"/>
+<path d="M36 28h30M36 38h30M36 48h20" stroke="#9DB8CC" stroke-width="3" stroke-linecap="round"/>
+<rect x="58" y="54" width="44" height="34" rx="4" fill="#F2D3A0" stroke="#B88A4A" stroke-width="3"/><path d="M80 54v34" stroke="#F7A81B" stroke-width="7"/></svg>`,
+  laundry:`<svg viewBox="0 0 120 100" aria-hidden="true"><ellipse cx="58" cy="94" rx="32" ry="4" fill="#1D3A2F" opacity=".1"/>
+<path d="M38 28 L50 20 Q58 30 66 20 L78 28 L92 42 L82 52 L78 46 V88 H38 V46 L34 52 L24 42 Z" fill="#5BAEDB" stroke="#2E8FC2" stroke-width="3" stroke-linejoin="round"/>
+<path d="M50 20 Q58 30 66 20" fill="none" stroke="#fff" stroke-width="3"/>
+<circle cx="98" cy="24" r="8" fill="#fff" stroke="#2E8FC2" stroke-width="2"/><circle cx="108" cy="40" r="4.5" fill="#fff" stroke="#2E8FC2" stroke-width="2"/><circle cx="90" cy="10" r="4.5" fill="#fff" stroke="#2E8FC2" stroke-width="2"/></svg>`
+};
+const GALLERY_BG = {tiffin:"#FFF0CC",medicine:"#E2F5EA",grocery:"#FDE6DD",docs:"#E1F0FA",laundry:"#EAF4FB"};
+const EMAIL = "sevago.vadodara@example.com";
+const inr = n => '₹' + Math.round(n).toLocaleString('en-IN');
+const esc = t => String(t).replace(/[<>&"']/g,'');
+
+/* ---------- Zones: [name, lat, lng, label side] (approximate centres) ---------- */
+const ZONES = [
+  ['Alkapuri',22.3103,73.1722,'l'],['Sayajigunj',22.3118,73.1830,'r'],['Fatehgunj',22.3200,73.1900,'t'],
+  ['Karelibaug',22.3280,73.2080,'r'],['Harni',22.3400,73.2170,'r'],['Gorwa',22.3300,73.1620,'t'],
+  ['Subhanpura',22.3190,73.1560,'t'],['Gotri',22.3180,73.1330,'b'],['Akota',22.2985,73.1640,'l'],
+  ['Vasna',22.2790,73.1550,'l'],['Tandalja',22.2740,73.1730,'r'],['Manjalpur',22.2680,73.1900,'r'],
+  ['Makarpura',22.2500,73.1980,'r'],['Waghodia Road',22.2950,73.2280,'r']
+];
+
+/* ---------- Mobile menu + nav highlight ---------- */
+const menu = document.getElementById('menu'), menuBtn = document.getElementById('menuBtn');
+menuBtn.addEventListener('click', () => { const o = menu.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o); });
+menu.addEventListener('click', e => { if (e.target.tagName === 'A') { menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); } });
+const navLinks = [...menu.querySelectorAll('a')];
+const spy = new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting) navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id && !l.classList.contains('cta')));
+}), { rootMargin: '-45% 0px -50% 0px' });
+navLinks.forEach(a => { const s = document.querySelector(a.getAttribute('href')); if (s) spy.observe(s); });
+
+/* ---------- Reliable section navigation (works in browsers and in preview panes) ---------- */
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function setActive(id){
+  navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id && !l.classList.contains('cta')));
+}
+function goTo(id){
+  const target = document.getElementById(id);
+  if (!target) return false;
+  target.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block: 'start'});
+  setActive(id);
+  try { history.replaceState(null, '', '#' + id); } catch (err) { /* ignored in sandboxed previews */ }
+  return true;
+}
+document.addEventListener('click', e => {
+  const a = e.target.closest && e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute('href').slice(1);
+  if (id && goTo(id)) e.preventDefault();
+});
+
+/* ---------- Build services table, home tiles and dropdowns ---------- */
+const $ = id => document.getElementById(id);
+$('svcRows').innerHTML = SERVICES.map(s =>
+  `<tr><td><b>${s.ico} ${s.name}</b></td><td>${s.desc}</td><td>${s.time}</td>
+   <td class="price">From ${inr(s.min)}<small>${inr(s.base)} base + ${inr(s.perKm)}/km</small></td>
+   <td><a class="btn btn-ghost" href="#contact" data-book="${s.id}">Book</a></td></tr>`).join('');
+
+$('svcGallery').innerHTML = SERVICES.map(s =>
+  `<div class="gcard"><div class="pic" style="background:${GALLERY_BG[s.id]}">${ART[s.id]}</div><div class="body"><b>${s.name}</b><small>from ${inr(s.min)}</small><a class="btn btn-ghost" href="#contact" data-book="${s.id}">Book</a></div></div>`).join('');
+
+$('homeTiles').innerHTML = SERVICES.map(s =>
+  `<a class="tile" href="#quote" data-pick="${s.id}"><span class="ico">${s.ico}</span><span><b>${s.name}</b><small>from ${inr(s.min)}</small></span></a>`).join('') +
+  `<a class="tile" href="#contact"><span class="ico">💬</span><span><b>Something else?</b><small>Ask us on WhatsApp</small></span></a>`;
+
+$('calcService').innerHTML = SERVICES.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+$('fService').innerHTML = SERVICES.map(s => `<option>${s.name}</option>`).join('') + '<option>Something else</option>';
+const zoneOpts = ZONES.map((z,i) => `<option value="${i}">${z[0]}</option>`).join('');
+$('calcFrom').innerHTML = zoneOpts; $('calcTo').innerHTML = zoneOpts;
+$('calcFrom').value = 0;   // Alkapuri
+$('calcTo').value = 11;    // Manjalpur
+
+/* ---------- Calculator ---------- */
+function haversine(a, b){
+  const R = 6371, rad = d => d * Math.PI / 180;
+  const dLat = rad(b[1]-a[1]), dLng = rad(b[2]-a[2]);
+  const h = Math.sin(dLat/2)**2 + Math.cos(rad(a[1]))*Math.cos(rad(b[1]))*Math.sin(dLng/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+let lastQuote = null;
+
+function calc(){
+  const s = SERVICES.find(x => x.id === $('calcService').value);
+  const from = ZONES[+$('calcFrom').value], to = ZONES[+$('calcTo').value];
+  const kg = +$('calcKg').value, express = $('calcExpress').checked;
+  $('kgOut').textContent = kg + ' kg';
+
+  const km = Math.max(1.5, Math.round(haversine(from, to) * ROAD_FACTOR * 10) / 10);
+  const distCharge = s.perKm * km;
+  const extraKg = Math.max(0, kg - FREE_KG), weightCharge = extraKg * EXTRA_KG_RATE;
+  const subtotal = s.base + distCharge + weightCharge;
+  const minAdj = Math.max(0, s.min - subtotal);
+  const total = Math.round(subtotal + minAdj + (express ? EXPRESS_FEE : 0));
+  const mins = Math.round((express ? 15 + 3 * km : 25 + 4.5 * km) / 5) * 5;
+
+  const lines = [
+    ['Base fare (' + s.name + ')', inr(s.base)],
+    ['Distance: ' + km.toFixed(1) + ' km × ' + inr(s.perKm), inr(distCharge)]
+  ];
+  if (extraKg) lines.push(['Extra weight: ' + extraKg + ' kg × ' + inr(EXTRA_KG_RATE), inr(weightCharge)]);
+  if (minAdj > 0) lines.push(['Minimum fare adjustment', inr(minAdj)]);
+  if (express) lines.push(['Express delivery', inr(EXPRESS_FEE)]);
+
+  const summary = `${s.name}: ${from[0]} to ${to[0]}, ${kg} kg${express ? ', Express' : ''}. Estimated ${inr(total)}, about ${mins} minutes.`;
+  lastQuote = {service: s, text: summary};
+  const wa = `https://wa.me/${WHATSAPP}?text=` + encodeURIComponent('Hello SevaGo, I want to book. ' + summary);
+
+  $('quoteOut').innerHTML = `
+    <div class="big"><strong>${inr(total)}</strong><span>${from[0]} → ${to[0]}</span></div>
+    <div class="stats">
+      <div><span>Distance</span><b>${km.toFixed(1)} km</b></div>
+      <div><span>Delivery time</span><b>about ${mins} min</b></div>
+      <div><span>Weight</span><b>${kg} kg</b></div>
+    </div>
+    <ul class="break">${lines.map(l => `<li><span>${l[0]}</span><b>${l[1]}</b></li>`).join('')}</ul>
+    <div class="actions">
+      <a class="btn btn-primary" href="#contact" id="bookNow">Book this delivery</a>
+      <a class="btn btn-wa" href="${wa}" target="_blank" rel="noopener">Send on WhatsApp</a>
+    </div>`;
+  $('bookNow').addEventListener('click', () => {
+    $('fService').value = s.name;
+    $('fMsg').value = 'Please book: ' + summary;
+  });
+  drawMap(+$('calcFrom').value, +$('calcTo').value);
+}
+
+/* ---------- Schematic map (SVG) ---------- */
+const MAP = {W:560, H:400, lat0:22.35, lat1:22.235, lng0:73.12, lng1:73.26};
+const px = z => [(z[2]-MAP.lng0)/(MAP.lng1-MAP.lng0)*MAP.W, (MAP.lat0-z[1])/(MAP.lat0-MAP.lat1)*MAP.H];
+function drawMap(fi, ti){
+  let s = `<svg viewBox="0 0 ${MAP.W} ${MAP.H}" role="img" aria-label="Schematic map of 14 Vadodara areas. Pickup: ${ZONES[fi][0]}. Drop: ${ZONES[ti][0]}.">
+    <rect width="${MAP.W}" height="${MAP.H}" rx="16" fill="#F1F8F3"/>`;
+  for (let x = 70; x < MAP.W; x += 70) s += `<line x1="${x}" x2="${x}" y1="0" y2="${MAP.H}" stroke="#E0EBE3"/>`;
+  for (let y = 66; y < MAP.H; y += 66) s += `<line y1="${y}" y2="${y}" x1="0" x2="${MAP.W}" stroke="#E0EBE3"/>`;
+  const a = px(ZONES[fi]), b = px(ZONES[ti]);
+  if (fi !== ti) s += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#F7A81B" stroke-width="5" stroke-dasharray="2 10" stroke-linecap="round"/>`;
+  ZONES.forEach((z, i) => {
+    const [x, y] = px(z), side = z[3];
+    const isF = i === fi, isT = i === ti;
+    const fill = isF ? '#1F8A5B' : isT ? '#F7A81B' : '#fff';
+    const stroke = isF ? '#146B45' : isT ? '#B87300' : '#8CB8A0';
+    const r = (isF || isT) ? 10 : 7;
+    const tx = side === 'l' ? x - 13 : side === 'r' ? x + 13 : x;
+    const ty = side === 't' ? y - 13 : side === 'b' ? y + 23 : y + 4;
+    const anchor = side === 'l' ? 'end' : side === 'r' ? 'start' : 'middle';
+    s += `<g class="zone" data-z="${i}" tabindex="0" role="button" aria-label="Select ${z[0]}">
+      <circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="3"/>
+      <text x="${tx}" y="${ty}" text-anchor="${anchor}"${(isF||isT)?' font-weight="800"':''}>${z[0]}</text></g>`;
+  });
+  s += `<g font-family="Mukta,sans-serif" font-size="12" font-weight="700">
+    <circle cx="22" cy="${MAP.H-52}" r="6" fill="#1F8A5B"/><text x="34" y="${MAP.H-48}" fill="#1D3A2F">Pickup</text>
+    <circle cx="22" cy="${MAP.H-30}" r="6" fill="#F7A81B"/><text x="34" y="${MAP.H-26}" fill="#1D3A2F">Drop</text></g></svg>`;
+  $('map').innerHTML = s;
+}
+let nextPick = 0; // 0 = set pickup, 1 = set drop
+function pickZone(i){
+  if (nextPick === 0) $('calcFrom').value = i; else $('calcTo').value = i;
+  nextPick = 1 - nextPick;
+  calc();
+}
+$('map').addEventListener('click', e => { const g = e.target.closest('.zone'); if (g) pickZone(+g.dataset.z); });
+$('map').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { const g = e.target.closest('.zone'); if (g) { e.preventDefault(); pickZone(+g.dataset.z); } } });
+
+['calcService','calcFrom','calcTo','calcKg','calcExpress'].forEach(id => $(id).addEventListener('input', calc));
+document.querySelectorAll('[data-pick]').forEach(a => a.addEventListener('click', () => { $('calcService').value = a.dataset.pick; calc(); }));
+document.querySelectorAll('[data-book]').forEach(a => a.addEventListener('click', () => {
+  const s = SERVICES.find(x => x.id === a.dataset.book);
+  $('fService').value = s.name;
+}));
+calc();
+
+/* ---------- Dashboard charts (all totals match the KPI cards) ---------- */
+function bars(id, rows, max, color, suffix){
+  $(id).innerHTML = rows.map(([n, v]) =>
+    `<div class="bar-row"><span>${n}</span><div class="bar"><b style="width:${v/max*100}%;background:${color}"></b></div><strong>${v.toLocaleString('en-IN')}${suffix||''}</strong></div>`).join('');
+}
+/* By service: 1350 + 780 + 920 + 640 + 510 = 4,200 */
+bars('svcBars', [['Tiffin and Home Food',1350],['Grocery and Kirana',920],['Medicine Delivery',780],['Document and Parcel',640],['Laundry Pickup',510]], 1350, '#1F8A5B');
+/* Delays by area: 31 + 27 + 24 + 22 + 21 + 35 = 160 */
+bars('zoneBars', [['Makarpura',31],['Karelibaug',27],['Waghodia Road',24],['Gotri',22],['Harni',21],['Other areas',35]], 35, '#E4572E');
+
+/* Donut: 3780 / 260 / 160 */
+(function(){
+  const r = 70, c = 2*Math.PI*r, parts = [[3780,'#3FB37F'],[260,'#2E8FC2'],[160,'#E4572E']], total = 4200;
+  let off = 0, s = `<svg width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Donut chart: 3,780 delivered, 260 in transit, 160 delayed"><g transform="rotate(-90 100 100)">`;
+  parts.forEach(([v, col]) => {
+    const len = v/total*c;
+    s += `<circle cx="100" cy="100" r="${r}" fill="none" stroke="${col}" stroke-width="26" stroke-dasharray="${len} ${c-len}" stroke-dashoffset="${-off}"/>`;
+    off += len;
+  });
+  $('donut').innerHTML = s + '</g></svg>';
+})();
+
+/* Time-of-day column chart: 1150 + 1380 + 820 + 850 = 4,200 */
+(function(){
+  const data = [['6 to 10 AM',1150],['10 AM to 2 PM',1380],['2 to 6 PM',820],['6 to 10 PM',850]];
+  const W = 520, H = 270, L = 48, B = 40, T = 24, R = 10, max = 1500;
+  const ph = H - B - T, slot = (W - L - R) / data.length, bw = slot * .56, top = Math.max(...data.map(d => d[1]));
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Column chart of orders by time of day. Busiest slot is 10 AM to 2 PM with 1,380 orders.">`;
+  for (let v = 0; v <= 1500; v += 500) {
+    const y = T + ph - v/max*ph;
+    s += `<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="#E5E9DC"/><text x="${L-8}" y="${y+4}" text-anchor="end" font-size="12" fill="#566C62">${v}</text>`;
+  }
+  data.forEach(([n, v], i) => {
+    const h = v/max*ph, x = L + i*slot + (slot-bw)/2, y = T + ph - h;
+    s += `<g><title>${n}: ${v} orders</title><rect x="${x}" y="${y}" width="${bw}" height="${h}" rx="5" fill="${v === top ? '#F7A81B' : '#1F8A5B'}"/>
+      <text x="${x+bw/2}" y="${y-7}" text-anchor="middle" font-size="13" font-weight="700" fill="#1D3A2F">${v.toLocaleString('en-IN')}</text>
+      <text x="${x+bw/2}" y="${H-14}" text-anchor="middle" font-size="12.5" fill="#566C62">${n}</text></g>`;
+  });
+  $('timeChart').innerHTML = s + '</svg>';
+})();
+
+/* ---------- Enquiry form ---------- */
+$('enquiryForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const msg = $('formMsg');
+  const name = $('fName').value.trim(), phone = $('fPhone').value.trim(), email = $('fEmail').value.trim();
+  if (!name) { msg.innerHTML = '<div class="error">Please enter your name.</div>'; $('fName').focus(); return; }
+  const digits = phone.replace(/[\s+\-]/g,'').replace(/^91(?=\d{10}$)/,'');
+  if (!/^[6-9]\d{9}$/.test(digits)) { msg.innerHTML = '<div class="error">Enter a valid 10-digit Indian mobile number.</div>'; $('fPhone').focus(); return; }
+  if (email && !/^\S+@\S+\.\S+$/.test(email)) { msg.innerHTML = '<div class="error">That email does not look right. Try you@example.com or leave it empty.</div>'; $('fEmail').focus(); return; }
+  const ref = 'SG-' + Math.floor(1000 + Math.random() * 9000);
+  const text = `Hello SevaGo, my enquiry reference is ${ref}. ${$('fService').value}. ${$('fMsg').value.trim()} (Name: ${name}, Mobile: ${digits})`;
+  const mail = `mailto:${EMAIL}?subject=${encodeURIComponent('SevaGo enquiry ' + ref)}&body=${encodeURIComponent(text)}`;
+  msg.innerHTML = `<div class="ok">Thank you, ${esc(name)}. Your request <b>${ref}</b> for ${esc($('fService').value)} is received and our team will call you on ${esc(digits)} shortly. To reach us right now, <a href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}" target="_blank" rel="noopener">send it on WhatsApp</a> or <a href="${mail}">email it</a>.</div>`;
+  e.target.reset();
+});
+</script>
+</body>
+</html>
